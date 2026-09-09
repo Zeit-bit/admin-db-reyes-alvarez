@@ -1,0 +1,44 @@
+Table User {
+ id integer [primary key]
+ username varchar
+ email varchar
+}
+
+
+Table Loan {
+ id integer [primary key]
+ id_user integer [not null]
+ id_book integer [not null]
+ loan_date date
+ }
+
+
+Table Book {
+ id integer [primary key]
+ title varchar
+ author varchar
+}
+
+
+Ref: Loan.id_user ?> User.id
+Ref: Loan.id_book ?> Book.id
+
+
+Records User(id, username, email) {
+ 0, 'Ana Gómez', 'ana@email.com'
+ 1, 'Carlos Ruíz', 'carlos@email.com'
+}
+
+
+Records Book(id, title, author) {
+ 0, 'El Principito', 'Antoine de Saint-Exupéry'
+ 1, 'Cien Años de Soledad', 'Gabriel García Márquez'
+}
+
+
+Records Loan(id, id_user, id_book, loan_date) {
+ 0, 0, 0, '2026-03-01'
+ 1, 1, 1, '2026-03-02'
+ 2, 0, 1, '2026-03-05'
+}
+
