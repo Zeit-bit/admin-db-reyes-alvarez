@@ -1,0 +1,15 @@
+services:
+  mysql_db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ecommerce_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ecommerce_data:/var/lib/mysql
+
+volumes:
+  ecommerce_data:

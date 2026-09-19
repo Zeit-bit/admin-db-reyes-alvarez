@@ -1,0 +1,28 @@
+table purchase {
+  id_purchase int [pk, not null]
+}
+
+table payment {
+  id_payment int [pk, not null]
+  id_purchase int [not null, unique] // FK
+  cost decimal [not null, check: `cost > 0`]
+  status varchar [not null]
+}
+
+table purchase_detail {
+  id_purchase_detail int [pk, not null]
+  id_purchase int [not null] // FK
+  id_product int [not null] // FK
+  quantity int [not null, check: `quantity > 0`]
+}
+
+table product {
+  id_product int [pk, not null]
+  name varchar [not null]
+  price decimal [not null, check: `price > 0`]
+  stock int [not null, check: `stock >= 0`]
+}
+
+ref: purchase.id_purchase - payment.id_purchase
+ref: purchase.id_purchase < purchase_detail.id_purchase
+ref: product.id_product < purchase_detail.id_product
